@@ -16,6 +16,8 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     private String selectedTopic = "";
+    JsonParser strMaker = new JsonParser();
+    private String strJson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 selectedTopic = "Античность";
                 ancient1.setBackgroundResource(R.drawable.round_back_white_stroke10);
+                medival.setBackgroundResource(R.drawable.round_back_white10);
+                daVinchi.setBackgroundResource(R.drawable.round_back_white10);
+                newTimes.setBackgroundResource(R.drawable.round_back_white10);
+                nowadays.setBackgroundResource(R.drawable.round_back_white10);
+                ancient2.setBackgroundResource(R.drawable.round_back_white10);
+                strJson = strMaker.getJSONFromFile("C:\\Users\\User\\AndroidStudioProjects\\QuizGame\\app\\src\\main\\assets\\questions.json");
 
             }
         });
@@ -49,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 selectedTopic = "Средневековье";
                 medival.setBackgroundResource(R.drawable.round_back_white_stroke10);
+                ancient1.setBackgroundResource(R.drawable.round_back_white10);
+                daVinchi.setBackgroundResource(R.drawable.round_back_white10);
+                newTimes.setBackgroundResource(R.drawable.round_back_white10);
+                nowadays.setBackgroundResource(R.drawable.round_back_white10);
+                ancient2.setBackgroundResource(R.drawable.round_back_white10);
             }
         });
 
@@ -57,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 selectedTopic = "Возрождение";
                 daVinchi.setBackgroundResource(R.drawable.round_back_white_stroke10);
+                ancient1.setBackgroundResource(R.drawable.round_back_white10);
+                medival.setBackgroundResource(R.drawable.round_back_white10);
+                newTimes.setBackgroundResource(R.drawable.round_back_white10);
+                nowadays.setBackgroundResource(R.drawable.round_back_white10);
+                ancient2.setBackgroundResource(R.drawable.round_back_white10);
             }
         });
 
@@ -65,6 +83,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 selectedTopic = "Новые века";
                 newTimes.setBackgroundResource(R.drawable.round_back_white_stroke10);
+                ancient1.setBackgroundResource(R.drawable.round_back_white10);
+                medival.setBackgroundResource(R.drawable.round_back_white10);
+                daVinchi.setBackgroundResource(R.drawable.round_back_white10);
+                nowadays.setBackgroundResource(R.drawable.round_back_white10);
+                ancient2.setBackgroundResource(R.drawable.round_back_white10);
             }
         });
 
@@ -73,6 +96,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 selectedTopic = "Современность";
                 nowadays.setBackgroundResource(R.drawable.round_back_white_stroke10);
+                ancient1.setBackgroundResource(R.drawable.round_back_white10);
+                medival.setBackgroundResource(R.drawable.round_back_white10);
+                daVinchi.setBackgroundResource(R.drawable.round_back_white10);
+                newTimes.setBackgroundResource(R.drawable.round_back_white10);
+                ancient2.setBackgroundResource(R.drawable.round_back_white10);
             }
         });
 
@@ -81,6 +109,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 selectedTopic = "Древний восток";
                 ancient2.setBackgroundResource(R.drawable.round_back_white_stroke10);
+                ancient1.setBackgroundResource(R.drawable.round_back_white10);
+                medival.setBackgroundResource(R.drawable.round_back_white10);
+                daVinchi.setBackgroundResource(R.drawable.round_back_white10);
+                newTimes.setBackgroundResource(R.drawable.round_back_white10);
+                nowadays.setBackgroundResource(R.drawable.round_back_white10);
             }
         });
 
@@ -93,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     Intent intent = new Intent(MainActivity.this, QuizActivity.class);
                     intent.putExtra("selectedTopic", selectedTopic);
+                    intent.putExtra("strJson", strJson);
                     startActivity(intent);
                     finish();
                 }
