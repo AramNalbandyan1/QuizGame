@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 newTimes.setBackgroundResource(R.drawable.round_back_white10);
                 nowadays.setBackgroundResource(R.drawable.round_back_white10);
                 ancient2.setBackgroundResource(R.drawable.round_back_white10);
+                strJson = null;
             }
         });
 
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 newTimes.setBackgroundResource(R.drawable.round_back_white10);
                 nowadays.setBackgroundResource(R.drawable.round_back_white10);
                 ancient2.setBackgroundResource(R.drawable.round_back_white10);
+                strJson = null;
             }
         });
 
@@ -88,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 daVinchi.setBackgroundResource(R.drawable.round_back_white10);
                 nowadays.setBackgroundResource(R.drawable.round_back_white10);
                 ancient2.setBackgroundResource(R.drawable.round_back_white10);
+                strJson = null;
             }
         });
 
@@ -101,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 daVinchi.setBackgroundResource(R.drawable.round_back_white10);
                 newTimes.setBackgroundResource(R.drawable.round_back_white10);
                 ancient2.setBackgroundResource(R.drawable.round_back_white10);
+                strJson = null;
             }
         });
 
@@ -114,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 daVinchi.setBackgroundResource(R.drawable.round_back_white10);
                 newTimes.setBackgroundResource(R.drawable.round_back_white10);
                 nowadays.setBackgroundResource(R.drawable.round_back_white10);
+                strJson = null;
             }
         });
 
