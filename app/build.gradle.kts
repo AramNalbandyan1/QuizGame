@@ -40,4 +40,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation(files("libs/json-simple-1.1.1.jar"))
 }

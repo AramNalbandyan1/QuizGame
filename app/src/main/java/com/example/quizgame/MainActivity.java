@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 newTimes.setBackgroundResource(R.drawable.round_back_white10);
                 nowadays.setBackgroundResource(R.drawable.round_back_white10);
                 ancient2.setBackgroundResource(R.drawable.round_back_white10);
-                strJson = strMaker.getJSONFromFile("C:\\Users\\User\\AndroidStudioProjects\\QuizGame\\app\\src\\main\\assets\\questions.json");
+                strJson = strMaker.getJSONFromFile("assets\\questions.json");
 
             }
         });
