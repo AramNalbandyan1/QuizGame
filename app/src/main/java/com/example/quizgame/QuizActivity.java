@@ -32,7 +32,7 @@ public class QuizActivity extends AppCompatActivity {
     private String correctAnswer;
     private int currentQuestionIndex = 1;
     private final int totalQuestions = 10;
-    final String getSelectedStrJson = getIntent().getStringExtra("strJson");
+    private String getSelectedStrJson;
     public void loadRandomQuestion(){
         try {
             JSONParser parser = new JSONParser();
@@ -86,6 +86,7 @@ public class QuizActivity extends AppCompatActivity {
         });
 
         final String getSelectedTopic = getIntent().getStringExtra("selectedTopic");
+        getSelectedStrJson = getIntent().getStringExtra("strJson");
         final ImageView exitBtn = findViewById(R.id.exitBtn);
         final TextView topicName = findViewById(R.id.topicName);
         final TextView question = findViewById(R.id.question);
@@ -96,6 +97,9 @@ public class QuizActivity extends AppCompatActivity {
         option4 = findViewById(R.id.option4);
         next = findViewById(R.id.next);
         topicName.setText(getSelectedTopic);
+
+
+
         try {
             JSONParser parser = new JSONParser();
             JSONObject jsonObject = (JSONObject) parser.parse(getSelectedStrJson);
@@ -122,6 +126,7 @@ public class QuizActivity extends AppCompatActivity {
             option2.setText(options.get(1));
             option3.setText(options.get(2));
             option4.setText(options.get(3));
+
 
             View.OnClickListener answerClickListener = new View.OnClickListener() {
                 @Override
