@@ -1,23 +1,31 @@
 package com.example.quizgame;
 
+import android.content.Context;
+
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.ContentHandler;
 import java.net.URL;
+import java.util.stream.Collectors;
 
 public class JsonParser {
 
-    public static String getJSONFromFile(String filename){
+    public static String getJSONFromFile(Context context, String filename){
         String jsonText = "";
         try{
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
+            InputStream inputStream = context.getAssets().open(filename);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             String line;
             while((line = bufferedReader.readLine()) != null){
                 jsonText += line + "\n";
             }
             bufferedReader.close();
-        } catch (Exception e) {e.printStackTrace();}
+        } catch (Exception e) {
+            e.printStackTrace();}
+        System.out.println(jsonText);
 
         return jsonText;
 

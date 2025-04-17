@@ -47,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
                 newTimes.setBackgroundResource(R.drawable.round_back_white10);
                 nowadays.setBackgroundResource(R.drawable.round_back_white10);
                 ancient2.setBackgroundResource(R.drawable.round_back_white10);
-                strJson = strMaker.getJSONFromFile("assets\\questions.json");
+                strJson = strMaker.getJSONFromFile(MainActivity.this,"questions.json");
+
 
             }
         });
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 newTimes.setBackgroundResource(R.drawable.round_back_white10);
                 nowadays.setBackgroundResource(R.drawable.round_back_white10);
                 ancient2.setBackgroundResource(R.drawable.round_back_white10);
-                strJson = null;
+                strJson =  strMaker.getJSONFromFile(MainActivity.this,"question_medival.json");
             }
         });
 
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 newTimes.setBackgroundResource(R.drawable.round_back_white10);
                 nowadays.setBackgroundResource(R.drawable.round_back_white10);
                 ancient2.setBackgroundResource(R.drawable.round_back_white10);
-                strJson = null;
+                strJson =  strMaker.getJSONFromFile(MainActivity.this,"questions_da_vinchi.json");
             }
         });
 
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 daVinchi.setBackgroundResource(R.drawable.round_back_white10);
                 nowadays.setBackgroundResource(R.drawable.round_back_white10);
                 ancient2.setBackgroundResource(R.drawable.round_back_white10);
-                strJson = null;
+                strJson =  strMaker.getJSONFromFile(MainActivity.this,"questions_new_times.json");
             }
         });
 
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 daVinchi.setBackgroundResource(R.drawable.round_back_white10);
                 newTimes.setBackgroundResource(R.drawable.round_back_white10);
                 ancient2.setBackgroundResource(R.drawable.round_back_white10);
-                strJson = null;
+                strJson =  strMaker.getJSONFromFile(MainActivity.this,"questions_nowadays.json");
             }
         });
 
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 daVinchi.setBackgroundResource(R.drawable.round_back_white10);
                 newTimes.setBackgroundResource(R.drawable.round_back_white10);
                 nowadays.setBackgroundResource(R.drawable.round_back_white10);
-                strJson = null;
+                strJson =  strMaker.getJSONFromFile(MainActivity.this,"questions_ancient_east.json");
             }
         });
 
