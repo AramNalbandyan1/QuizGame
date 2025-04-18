@@ -28,6 +28,7 @@ import java.util.Random;
 public class QuizActivity extends AppCompatActivity {
 
     private TextView questions, question;
+    private int correctAnswersCount = 0;
     private AppCompatButton option1, option2, option3, option4, next;
     private String correctAnswer;
     private int currentQuestionIndex = 1;
@@ -137,6 +138,7 @@ public class QuizActivity extends AppCompatActivity {
                     if (selectedAnswer.equals(correctAnswer)) {
 
                         clickedButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), android.R.color.holo_green_dark));
+                        correctAnswersCount++;
                     } else {
 
                         clickedButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), android.R.color.holo_red_light));
@@ -185,7 +187,7 @@ public class QuizActivity extends AppCompatActivity {
                     loadRandomQuestion();
                 } else {
 
-                    Toast.makeText(QuizActivity.this, "Викторина завершена!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(QuizActivity.this, "Викторина завершена! Правильных ответов: " + correctAnswersCount + " из " + totalQuestions, Toast.LENGTH_LONG).show();
                 }
             }
         });
