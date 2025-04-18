@@ -52,7 +52,7 @@ public class QuizActivity extends AppCompatActivity {
             }
             Collections.shuffle(options);
 
-
+            question.setText(questionText);
             option1.setText(options.get(0));
             option2.setText(options.get(1));
             option3.setText(options.get(2));
@@ -179,7 +179,7 @@ public class QuizActivity extends AppCompatActivity {
                     currentQuestionIndex++;
 
 
-                    question.setText(currentQuestionIndex + "/" + totalQuestions);
+                    questions.setText(currentQuestionIndex + "/" + totalQuestions);
 
 
                     loadRandomQuestion();
