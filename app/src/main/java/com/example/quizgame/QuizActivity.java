@@ -2,6 +2,7 @@ package com.example.quizgame;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,6 +34,9 @@ public class QuizActivity extends AppCompatActivity {
     private final int totalQuestions = 10;
     private String getSelectedStrJson;
     private List<JSONObject> shuffledQuestions;
+    private TextView timerTextView;
+    private long startTime;
+    private CountDownTimer globalTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,22 @@ public class QuizActivity extends AppCompatActivity {
         option3 = findViewById(R.id.option3);
         option4 = findViewById(R.id.option4);
         next = findViewById(R.id.next);
+        timerTextView = findViewById(R.id.timer);
+        startTime = System.currentTimeMillis();
+
+        globalTimer = new CountDownTimer(Long.MAX_VALUE, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                long elapsedMillis = System.currentTimeMillis() - startTime;
+                int seconds = (int) (elapsedMillis / 1000);
+                timerTextView.setText(String.format("%02d:%02d", seconds / 60, seconds % 60));
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
 
         topicName.setText(getSelectedTopic);
         questions.setText(currentQuestionIndex + "/" + totalQuestions);
@@ -83,7 +103,17 @@ public class QuizActivity extends AppCompatActivity {
                 questions.setText(currentQuestionIndex + "/" + totalQuestions);
                 loadQuestion(currentQuestionIndex - 1);
             } else {
-                Toast.makeText(QuizActivity.this, "Викторина завершена! Правильных ответов: " + correctAnswersCount + " из " + totalQuestions, Toast.LENGTH_LONG).show();
+                if (globalTimer != null) globalTimer.cancel();
+                long totalTimeMillis = System.currentTimeMillis() - startTime;
+                int totalSeconds = (int) (totalTimeMillis / 1000);
+                String timeSpent = String.format("%02d:%02d", totalSeconds / 60, totalSeconds % 60);
+                Intent resultIntent = new Intent(QuizActivity.this, ResultActivity.class);
+                resultIntent.putExtra("correctAnswers", correctAnswersCount);
+                resultIntent.putExtra("totalQuestions", totalQuestions);
+                resultIntent.putExtra("totalTime", timeSpent);
+                startActivity(resultIntent);
+                finish();
+                //Toast.makeText(QuizActivity.this, "Викторина завершена! Правильных ответов: " + correctAnswersCount + " из " + totalQuestions + "\nВремя: " + timeSpent, Toast.LENGTH_LONG).show();
             }
         });
 
