@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         });
         final LinearLayout ancient1 = findViewById(R.id.ancient1Layout);
         final LinearLayout medival = findViewById(R.id.medivalLayout);
-        final LinearLayout newTimes = findViewById(R.id.newTimesLay);
+        final LinearLayout newTimes = findViewById(R.id.newTimesLayout);
         final LinearLayout daVinchi = findViewById(R.id.davinchiLayout);
         final LinearLayout nowadays = findViewById(R.id.nowadaysLayout);
         final LinearLayout ancient2 = findViewById(R.id.ancient2Layout);
