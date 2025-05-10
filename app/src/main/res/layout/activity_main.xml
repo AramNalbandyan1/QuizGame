@@ -45,11 +45,11 @@
                 android:padding="20dp"
                 android:background="@drawable/round_back_white10">
 
-               <!-- <ImageView
+                <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/ancient_world_image"
-                    android:contentDescription="Античность" /> -->
+                    android:src="@drawable/ancient_world_image_optimized"
+                    android:contentDescription="Античность" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -75,11 +75,11 @@
                 android:padding="20dp"
                 android:background="@drawable/round_back_white10">
 
-               <!-- <ImageView
+                <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/medival_image"
-                    android:contentDescription="Средневековье" /> -->
+                    android:src="@drawable/medival_image_optimized"
+                    android:contentDescription="Средневековье" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -105,11 +105,11 @@
                 android:padding="20dp"
                 android:background="@drawable/round_back_white10">
 
-               <!-- <ImageView
+                <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/da_vinchi_image"
-                    android:contentDescription="Возрождение" /> -->
+                    android:src="@drawable/da_vinchi_image_optimized"
+                    android:contentDescription="Возрождение" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -135,11 +135,11 @@
                 android:padding="20dp"
                 android:background="@drawable/round_back_white10">
 
-                <!-- <ImageView
+                <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/new_times_image"
-                    android:contentDescription="Новые века" /> -->
+                    android:src="@drawable/new_times_optimized"
+                    android:contentDescription="Новые века" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -164,11 +164,11 @@
                 android:padding="20dp"
                 android:background="@drawable/round_back_white10">
 
-                <!-- <ImageView
+                <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/nowadays_image"
-                    android:contentDescription="Современность" /> -->
+                    android:src="@drawable/nowadays_image_optimized"
+                    android:contentDescription="Современность" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -193,11 +193,11 @@
                 android:padding="20dp"
                 android:background="@drawable/round_back_white10">
 
-                <!-- <ImageView
+                <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/ancient_image"
-                    android:contentDescription="Древний восток" /> -->
+                    android:src="@drawable/ancient_image_optimized"
+                    android:contentDescription="Древний восток" />
 
                 <TextView
                     android:layout_width="wrap_content"
