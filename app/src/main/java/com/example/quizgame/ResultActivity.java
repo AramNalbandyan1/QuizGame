@@ -80,11 +80,18 @@ public class ResultActivity extends AppCompatActivity {
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
-                        String username = documentSnapshot.getString("username");
+                        String username;
 
-                        if (username == null) {
-                            Log.e("LEADERBOARD", "Имя пользователя не найдено");
-                            return;
+
+                        if (auth.getCurrentUser().getEmail().equals("individualproject2025@gmail.com")) {
+                            username = "Guest";
+                        } else {
+                            username = documentSnapshot.getString("username");
+
+                            if (username == null) {
+                                Log.e("LEADERBOARD", "Имя пользователя не найдено");
+                                return;
+                            }
                         }
 
 

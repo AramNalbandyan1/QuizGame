@@ -33,6 +33,13 @@
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Войти как гость"
+        android:id="@+id/guest"/>
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Нажмите для регистрации"
         android:id="@+id/register"/>
 

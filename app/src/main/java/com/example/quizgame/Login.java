@@ -25,6 +25,7 @@ public class Login extends AppCompatActivity {
     private EditText email, password;
     private Button login;
     private Button register;
+    private Button guest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class Login extends AppCompatActivity {
         password = findViewById(R.id.password);
         login = findViewById(R.id.login);
         register = findViewById(R.id.register);
+        guest = findViewById(R.id.guest);
 
         login.setOnClickListener(v -> {
             String txt_email = email.getText().toString().trim();
@@ -48,6 +50,25 @@ public class Login extends AppCompatActivity {
             } else {
                 loginUser(txt_email, txt_password);
             }
+        });
+
+        guest.setOnClickListener(v -> {
+            String email = "individualproject2025@gmail.com";
+            String password = "Samsung2025";
+
+            FirebaseAuth.getInstance()
+                    .signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+
+                            Toast.makeText(this, "Вход как гость выполнен", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(this, MainActivity.class));
+                            finish();
+                        } else {
+
+                            Toast.makeText(this, "Ошибка входа: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
         });
 
         register.setOnClickListener(v -> {
