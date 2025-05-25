@@ -111,9 +111,10 @@ public class QuizActivity extends AppCompatActivity {
                 resultIntent.putExtra("correctAnswers", correctAnswersCount);
                 resultIntent.putExtra("totalQuestions", totalQuestions);
                 resultIntent.putExtra("totalTime", timeSpent);
+                resultIntent.putExtra("category", getIntent().getStringExtra("category"));
                 startActivity(resultIntent);
                 finish();
-                //Toast.makeText(QuizActivity.this, "Викторина завершена! Правильных ответов: " + correctAnswersCount + " из " + totalQuestions + "\nВремя: " + timeSpent, Toast.LENGTH_LONG).show();
+
             }
         });
 

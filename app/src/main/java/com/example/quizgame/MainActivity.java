@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     private String selectedTopic = "";
+    private String category = "";
     JsonParser strMaker = new JsonParser();
     private String strJson;
 
@@ -36,11 +37,13 @@ public class MainActivity extends AppCompatActivity {
         final LinearLayout nowadays = findViewById(R.id.nowadaysLayout);
         final LinearLayout ancient2 = findViewById(R.id.ancient2Layout);
         final Button startQuiz = findViewById(R.id.startQuizBtn);
+        final Button goToLeaderboard = findViewById(R.id.leaderboardBtn);
 
         ancient1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectedTopic = "Античность";
+                category = "Ancient";
                 ancient1.setBackgroundResource(R.drawable.round_back_white_stroke10);
                 medival.setBackgroundResource(R.drawable.round_back_white10);
                 daVinchi.setBackgroundResource(R.drawable.round_back_white10);
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectedTopic = "Средневековье";
+                category = "Medival";
                 medival.setBackgroundResource(R.drawable.round_back_white_stroke10);
                 ancient1.setBackgroundResource(R.drawable.round_back_white10);
                 daVinchi.setBackgroundResource(R.drawable.round_back_white10);
@@ -71,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectedTopic = "Возрождение";
+                category = "DaVinchi";
                 daVinchi.setBackgroundResource(R.drawable.round_back_white_stroke10);
                 ancient1.setBackgroundResource(R.drawable.round_back_white10);
                 medival.setBackgroundResource(R.drawable.round_back_white10);
@@ -85,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectedTopic = "Новые века";
+                category = "NewTimes";
                 newTimes.setBackgroundResource(R.drawable.round_back_white_stroke10);
                 ancient1.setBackgroundResource(R.drawable.round_back_white10);
                 medival.setBackgroundResource(R.drawable.round_back_white10);
@@ -99,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectedTopic = "Современность";
+                category = "Nowadays";
                 nowadays.setBackgroundResource(R.drawable.round_back_white_stroke10);
                 ancient1.setBackgroundResource(R.drawable.round_back_white10);
                 medival.setBackgroundResource(R.drawable.round_back_white10);
@@ -113,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectedTopic = "Древний восток";
+                category = "Ancient2";
                 ancient2.setBackgroundResource(R.drawable.round_back_white_stroke10);
                 ancient1.setBackgroundResource(R.drawable.round_back_white10);
                 medival.setBackgroundResource(R.drawable.round_back_white10);
@@ -132,7 +140,24 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     Intent intent = new Intent(MainActivity.this, QuizActivity.class);
                     intent.putExtra("selectedTopic", selectedTopic);
+                    intent.putExtra("category", category);
                     intent.putExtra("strJson", strJson);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
+
+        goToLeaderboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(selectedTopic.isEmpty()){
+                    Toast.makeText(MainActivity.this, "Выберите викторину", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Intent intent = new Intent(MainActivity.this, LeaderboardActivity.class);
+                    intent.putExtra("selectedTopic", selectedTopic);
+                    intent.putExtra("category", category);
                     startActivity(intent);
                     finish();
                 }
