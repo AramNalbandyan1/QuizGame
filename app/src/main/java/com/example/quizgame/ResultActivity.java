@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -75,27 +76,49 @@ public class ResultActivity extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String uid = auth.getCurrentUser().getUid();
 
-
         db.collection("users").document(uid)
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         String username = documentSnapshot.getString("username");
 
-                        Map<String, Object> result = new HashMap<>();
-                        result.put("username", username);
-                        result.put("score", score);
-                        result.put("time", timeInSeconds);
+                        if (username == null) {
+                            Log.e("LEADERBOARD", "Имя пользователя не найдено");
+                            return;
+                        }
 
 
-                        db.collection("LEADERBOARD")
+                        DocumentReference resultRef = db.collection("LEADERBOARD")
                                 .document(category)
                                 .collection("RESULTS")
-                                .add(result)
-                                .addOnSuccessListener(docRef ->
-                                        Log.d("LEADERBOARD", "Результат сохранён"))
-                                .addOnFailureListener(e ->
-                                        Log.e("LEADERBOARD", "Ошибка при сохранении", e));
+                                .document(uid);
+
+                        resultRef.get().addOnSuccessListener(existingSnapshot -> {
+                            boolean shouldUpdate = true;
+
+                            if (existingSnapshot.exists()) {
+                                Long existingScore = existingSnapshot.getLong("score");
+                                Double existingTime = existingSnapshot.getDouble("time");
+
+                                if (existingScore != null && existingTime != null) {
+
+                                    shouldUpdate = score > existingScore || (score == existingScore && timeInSeconds < existingTime);
+                                }
+                            }
+
+                            if (shouldUpdate) {
+                                Map<String, Object> result = new HashMap<>();
+                                result.put("username", username);
+                                result.put("score", score);
+                                result.put("time", timeInSeconds);
+
+                                resultRef.set(result)
+                                        .addOnSuccessListener(aVoid ->
+                                                Log.d("LEADERBOARD", "Лучший результат обновлён"))
+                                        .addOnFailureListener(e ->
+                                                Log.e("LEADERBOARD", "Ошибка при сохранении", e));
+                            }
+                        });
                     } else {
                         Log.e("LEADERBOARD", "Документ пользователя не найден");
                     }

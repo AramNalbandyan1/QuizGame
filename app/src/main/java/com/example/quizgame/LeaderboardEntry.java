@@ -5,6 +5,7 @@ public class LeaderboardEntry {
     public long score;
     public double time;
 
+    public LeaderboardEntry() {}
     public LeaderboardEntry(String username, long score, double time) {
         this.username = username;
         this.score = score;
