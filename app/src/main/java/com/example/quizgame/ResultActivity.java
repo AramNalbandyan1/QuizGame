@@ -74,7 +74,25 @@ public class ResultActivity extends AppCompatActivity {
     private void saveResultToLeaderboard(String category, int score, double timeInSeconds) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth auth = FirebaseAuth.getInstance();
+        String email = auth.getCurrentUser().getEmail();
         String uid = auth.getCurrentUser().getUid();
+
+        if (email.equals("individualproject2025@gmail.com")) {
+            Map<String, Object> result = new HashMap<>();
+            result.put("username", "Guest");
+            result.put("score", score);
+            result.put("time", timeInSeconds);
+
+            db.collection("LEADERBOARD")
+                    .document(category)
+                    .collection("RESULTS")
+                    .add(result)
+                    .addOnSuccessListener(docRef ->
+                            Log.d("LEADERBOARD", "Результат сохранён для гостя"))
+                    .addOnFailureListener(e ->
+                            Log.e("LEADERBOARD", "Ошибка при сохранении гостевого результата", e));
+            return;
+        }
 
         db.collection("users").document(uid)
                 .get()
