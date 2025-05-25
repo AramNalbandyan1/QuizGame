@@ -77,20 +77,38 @@ public class ResultActivity extends AppCompatActivity {
         String email = auth.getCurrentUser().getEmail();
         String uid = auth.getCurrentUser().getUid();
 
-        if (email.equals("individualproject2025@gmail.com")) {
-            Map<String, Object> result = new HashMap<>();
-            result.put("username", "Guest");
-            result.put("score", score);
-            result.put("time", timeInSeconds);
+        if (email != null && email.equals("individualproject2025@gmail.com")) {
+            String username = "Guest";
 
-            db.collection("LEADERBOARD")
+            DocumentReference resultRef = db.collection("LEADERBOARD")
                     .document(category)
                     .collection("RESULTS")
-                    .add(result)
-                    .addOnSuccessListener(docRef ->
-                            Log.d("LEADERBOARD", "Результат сохранён для гостя"))
-                    .addOnFailureListener(e ->
-                            Log.e("LEADERBOARD", "Ошибка при сохранении гостевого результата", e));
+                    .document(uid);
+
+            resultRef.get().addOnSuccessListener(existingSnapshot -> {
+                boolean shouldUpdate = true;
+
+                if (existingSnapshot.exists()) {
+                    Long existingScore = existingSnapshot.getLong("score");
+                    Double existingTime = existingSnapshot.getDouble("time");
+
+                    if (existingScore != null && existingTime != null) {
+                        shouldUpdate = score > existingScore || (score == existingScore && timeInSeconds < existingTime);
+                    }
+                }
+
+                if (shouldUpdate) {
+                    Map<String, Object> result = new HashMap<>();
+                    result.put("username", username);
+                    result.put("score", score);
+                    result.put("time", timeInSeconds);
+
+                    resultRef.set(result)
+                            .addOnSuccessListener(aVoid -> Log.d("LEADERBOARD", "Гостевой результат сохранён"))
+                            .addOnFailureListener(e -> Log.e("LEADERBOARD", "Ошибка при сохранении гостя", e));
+                }
+            });
+
             return;
         }
 
@@ -98,20 +116,11 @@ public class ResultActivity extends AppCompatActivity {
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
-                        String username;
-
-
-                        if (auth.getCurrentUser().getEmail().equals("individualproject2025@gmail.com")) {
-                            username = "Guest";
-                        } else {
-                            username = documentSnapshot.getString("username");
-
-                            if (username == null) {
-                                Log.e("LEADERBOARD", "Имя пользователя не найдено");
-                                return;
-                            }
+                        String username = documentSnapshot.getString("username");
+                        if (username == null) {
+                            Log.e("LEADERBOARD", "Имя пользователя не найдено");
+                            return;
                         }
-
 
                         DocumentReference resultRef = db.collection("LEADERBOARD")
                                 .document(category)
@@ -126,7 +135,6 @@ public class ResultActivity extends AppCompatActivity {
                                 Double existingTime = existingSnapshot.getDouble("time");
 
                                 if (existingScore != null && existingTime != null) {
-
                                     shouldUpdate = score > existingScore || (score == existingScore && timeInSeconds < existingTime);
                                 }
                             }
@@ -138,17 +146,15 @@ public class ResultActivity extends AppCompatActivity {
                                 result.put("time", timeInSeconds);
 
                                 resultRef.set(result)
-                                        .addOnSuccessListener(aVoid ->
-                                                Log.d("LEADERBOARD", "Лучший результат обновлён"))
-                                        .addOnFailureListener(e ->
-                                                Log.e("LEADERBOARD", "Ошибка при сохранении", e));
+                                        .addOnSuccessListener(aVoid -> Log.d("LEADERBOARD", "Результат обновлён"))
+                                        .addOnFailureListener(e -> Log.e("LEADERBOARD", "Ошибка при сохранении", e));
                             }
                         });
+
                     } else {
                         Log.e("LEADERBOARD", "Документ пользователя не найден");
                     }
                 })
-                .addOnFailureListener(e ->
-                        Log.e("LEADERBOARD", "Ошибка при получении username", e));
+                .addOnFailureListener(e -> Log.e("LEADERBOARD", "Ошибка при получении username", e));
     }
 }
